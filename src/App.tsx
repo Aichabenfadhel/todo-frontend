@@ -16,7 +16,7 @@ export default function App() {
       <NavbarComponent />
 
       <Routes>
-        <Route index path="home" element={<Home />} />
+        <Route path="home" index element={<Home />} />
         <Route path="Sign-up" element={<SignUpForm />} />
         <Route path="Login" element={<LoginForm />} />
         <Route path="todo" element={<TodoIndex />} />
