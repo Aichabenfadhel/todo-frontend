@@ -1,27 +1,26 @@
 import React from "react";
 
-import InputTodo from "./components/Input";
-import ListTodos from "./components/ListTodo";
+import { Route, Routes } from "react-router-dom";
+
+import TodoIndex from "./components/Todoindex";
 import NavbarComponent from "./components/Navbar-cont";
 import SignUpForm from "./components/users/signUp";
 import LoginForm from "./components/users/login";
+import Home from "./components/home";
 
 import "./App.css";
 
-//components
-
-function App() {
+export default function App() {
   return (
     <React.Fragment>
       <NavbarComponent />
-      <div className="container">
-        {/* <SignUpForm /> */}
-        <LoginForm/>
-        {/* <InputTodo />
-        <ListTodos /> */}
-      </div>
+
+      <Routes>
+        <Route index path="home" element={<Home />} />
+        <Route path="Sign-up" element={<SignUpForm />} />
+        <Route path="Login" element={<LoginForm />} />
+        <Route path="todo" element={<TodoIndex />} />
+      </Routes>
     </React.Fragment>
   );
 }
-
-export default App;
