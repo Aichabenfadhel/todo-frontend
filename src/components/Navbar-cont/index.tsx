@@ -1,39 +1,40 @@
-import React from 'react';
-import {
-  
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
- 
-} from 'reactstrap';
+import React from "react";
+import { Navbar, NavbarToggler, NavbarBrand } from "reactstrap";
 
-import {SiTodoist} from "react-icons/si"
+import { Outlet, Link } from "react-router-dom";
 
-import "./nav.css"
+import { SiTodoist } from "react-icons/si";
 
-export default function NavbarComponent(args:any) {
+import "./nav.css";
+
+export default function NavbarComponent(args: any) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div className='Nav-cont'>
+    <div className="Nav-cont">
       <Navbar {...args}>
-        <NavbarBrand href="/" className='nav-title'> <SiTodoist className='nav-icon'/>Todo List</NavbarBrand>
+        <Link to="/home" className="nav-title">
+          <NavbarBrand className="nav-title">
+            {" "}
+            <SiTodoist className="nav-icon" />
+            Todo List
+          </NavbarBrand>
+        </Link>
         <NavbarToggler onClick={toggle} />
-        {/* <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-          
-            
-          </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse> */}
+        <div>
+          <Link to="/Login" className="loginButton">
+            Login
+          </Link>
+          <Link to="/Sign-up" className="signupButton">
+            <button type="button" className="btn btn-light">
+              Sign up
+            </button>
+          </Link>
+        </div>
       </Navbar>
+      <Outlet />
     </div>
   );
 }
-
-
