@@ -47,6 +47,7 @@ export default function LoginForm() {
   }
 
   return (
+    <div className="formdivContainer">
     <div className="sContainer">
       <h1>Login Form</h1>
       <div className="signupContainer">
@@ -72,13 +73,13 @@ export default function LoginForm() {
                   <span className="errorMessage">
                     Email doesn't exist
                     <span>
-                      <a
+                      <Button
                         className="registerButton"
                         color="danger"
                         onClick={toggle}
                       >
                         Register Now
-                      </a>
+                      </Button>
                       <Modal
                         size="xl"
                         className="modalContainer"
@@ -126,6 +127,7 @@ export default function LoginForm() {
         </div>
         <div className="imagelogContainer"></div>
       </div>
+    </div>
     </div>
   );
 }

@@ -62,7 +62,7 @@ export default function SignUpForm() {
     }
   }
   return (
-    <React.Fragment>
+    <div className="formdivContainer" >
       <div>
         <ToastContainer />
       </div>
@@ -192,6 +192,6 @@ export default function SignUpForm() {
           <div className="imageContainer"></div>
         </div>
       </div>
-    </React.Fragment>
+    </div >
   );
 }
