@@ -1,0 +1,78 @@
+
+body{
+    background-image: url("../../../../assets/images/bg2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+.signupContainer{
+    background-color: white;
+    display: inline-flex;
+    /* margin-top: 2%; */
+    width: 80%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0.5rem 1rem rgba(90, 52, 35, 0.3);
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2%;
+    /* width: 100%; */
+}
+
+.formInput{
+    width: 100%;
+}
+
+.imageContainer{
+    width: 50%;
+    margin:2% 2% 2% 0%;
+    background-image: url("../../../../assets/images/signup2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.imagelogContainer{
+    width: 50%;
+    margin:0% 2% 2% 0%;
+    background-image: url("../../../../assets/images/login.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.signupButton{
+    background-color:#8fb1eb;
+    color: black;
+}
+
+.errorMessage{
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    margin: 0%;
+}
+
+.registerButton{
+    /* width: auto;
+    height: 30px;
+    font-size: 10px; */
+    text-decoration: underline rgb(19, 18, 18);
+    margin-left: 1%;
+    
+}
+.registerButton:hover{
+    cursor: pointer;
+
+}
+.modalContainer{
+    width: 70%;
+}

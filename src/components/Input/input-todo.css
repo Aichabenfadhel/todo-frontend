@@ -1,0 +1,14 @@
+.input {
+    border: 1px solid #8fb1eb;
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(90, 52, 35, 0.3);
+    transition: .2s linear;
+    width: 60%;
+    margin-left: 10%;
+    margin-right: 1%;
+  }
+
+  .button-add{
+    background-color:#8fb1eb;
+  }

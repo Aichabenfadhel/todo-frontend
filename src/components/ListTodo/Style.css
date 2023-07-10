@@ -1,0 +1,85 @@
+.box {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding: 8px;
+    box-shadow: 0 0.5rem 1rem rgba(90, 52, 35, 0.3);
+    transition: .2s linear;
+    height: auto;
+    margin: 2%;
+  }
+
+  .list-container{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin: 2%;
+  }
+
+  .list-container h1{
+    margin-left: 3%;
+  }
+  
+  .button{
+    background-color: white;
+    border-color: white;
+  }
+
+  .button:hover{
+    background-color: white;
+    border-color: white;
+  }
+  .button:active:after,button:focus,button:after{
+    background-color: white;
+    border-color: white;
+  }
+
+  .list-todos {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .list-todos li{
+    display: inline-flex;
+    align-items: center;
+  }
+  .todo-container div,.todo-container{
+    margin-right: 1%;
+    width: 70%;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .editors{
+    width: auto;
+    display: inline-flex;
+  }
+
+  .id-container{
+    margin-right: 2%; 
+    font-size: 14px;
+    color: #8fb1eb;
+    border: 1px solid #8fb1eb;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+ .icon-list{
+  color:#8fb1eb;
+ }
+
+ .icon-editors{
+  font-size:25px;
+  color:#8fb1eb;
+ }
+
+ .todo-container .done{
+  text-decoration: line-through;
+  opacity: 0.3;
+ }
