@@ -14,17 +14,19 @@ export default function SignUpForm() {
   const [lastname, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [pwd, setPassword] = React.useState("");
+  const [isEmaillExist, setIsEmailExist] = React.useState(false);
 
   const showToastMessage = () => {
     toast.success("Registred Successfully ! Go and login Now", {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
+      autoClose: 3000,
     });
   };
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -32,6 +34,7 @@ export default function SignUpForm() {
       lastname: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
@@ -39,6 +42,7 @@ export default function SignUpForm() {
     showToastMessage();
 
     addUser();
+    reset();
   };
 
   async function addUser() {
@@ -50,7 +54,11 @@ export default function SignUpForm() {
           email,
           pwd,
         })
-        .then((): void => {})
+        .then((response: any): void => {
+          if (response.data.message === "User already exists!") {
+            setIsEmailExist(true);
+          }
+        })
         .catch((error) => {
           console.error(error.message);
         });
@@ -76,7 +84,7 @@ export default function SignUpForm() {
                 className="signUpForm"
                 onSubmit={handleSubmit(() => handleSubmitButton())}
               >
-                <div className="form-group">
+                <div className="form-group ">
                   <label htmlFor="firstname">Firstname </label>
                   <input
                     type="text"
@@ -181,6 +189,28 @@ export default function SignUpForm() {
                   {errors.password?.message && (
                     <span className="errorMessage">
                       {errors.password.message}
+                    </span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="confirmPassword"
+                    placeholder="Confirm your Password"
+                    {...register("confirmPassword", {
+                      required: "Please confirm your password",
+                      validate: {
+                        matchPassword: (value) =>
+                          value === pwd || "Passwords do not match",
+                      },
+                    })}
+                  />
+                  {errors.confirmPassword?.message && (
+                    <span className="errorMessage">
+                      {errors.confirmPassword.message}
                     </span>
                   )}
                 </div>
