@@ -17,48 +17,42 @@ import {
 
 import "../signUp/style.css";
 import SignUpForm from "../signUp";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import NavbarComponent from "../../Navbar-cont";
 
-export default function LoginForm() {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+type LoginFormPropsType = {
+  email: string;
+  password:string;
+  setEmail:Function;
+  setPassword: Function;
+};
+
+export default function LoginForm({ email, setEmail,password, setPassword }: LoginFormPropsType ) {
+
   const [isEmaillExist, setIsEmailExist] = React.useState(true);
-  const [isEmailValid, setIsEmailValid] = React.useState(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
   const [modal, setModal] = React.useState(false);
   const navigate = useNavigate();
 
-  const {
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-
   const toggle = () => setModal(!modal);
- 
+
   async function getUser() {
     try {
       axios
         .get(`${process.env.REACT_APP_API_URL}/getUser/${email}/${password}`)
         .then((response: any): void => {
-          if (
-            errors.email?.message === "Email address must be a valid address"
-          ) {
-            setIsEmailValid(false);
-          }
           if (response.data.message === "Error User's email doesn't exist") {
             setIsEmailExist(false);
           } else if (response.data.message === "Verify your password") {
-            setIsEmailExist(true);
-
             setIsPasswordValid(false);
+            setIsEmailExist(true);
           }
-          navigate("/todo")
+
+          if (response.data.message === "Getting user successfully") {
+            localStorage.setItem("user", JSON.stringify(response.data.rows));
+
+            navigate("/todo");
+          }
         })
         .catch((error: any) => {
           console.error(error.message);
@@ -69,104 +63,92 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="formdivContainer">
-      <div className="sContainer">
-        <h1>Login Form</h1>
-        <div className="signupContainer">
-          <div className="formContainer">
-            <h1>Welcome !</h1>
-            <h5>Login Now And Find Your Todos</h5>
-            <Form className="signUpForm">
-              <Row>
-                <FormGroup>
-                  <Label for="exampleEmail">Email</Label>
-                  <Input
-                    required
-                    id="exampleEmail"
-                    placeholder="Type your E-mail adress"
-                    type="email"
-                    {...register("email", {
-                      required: "Email is required",
-                      validate: {
-                        matchPattern: (v) =>
-                          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
-                            v
-                          ) || "Email address must be a valid address",
-                      },
-                    })}
-                   onChange={(e: any) => {
-                      setEmail(e.target.value);
-                    }} 
-                  />
+    <>
+      <NavbarComponent />
+      <div className="formdivContainer">
+        <div className="sContainer">
+          <h1>Login Form</h1>
+          <div className="signupContainer">
+            <div className="formContainer">
+              <h1>Welcome !</h1>
+              <h5>Login Now And Find Your Todos</h5>
+              <Form className="signUpForm">
+                <Row>
+                  <FormGroup>
+                    <Label for="exampleEmail">Email</Label>
+                    <Input
+                      required
+                      id="exampleEmail"
+                      placeholder="Type your E-mail adress"
+                      type="email"
+                      name="email"
+                      onChange={(e: any) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
 
-                  {!isEmailValid
-                    ? errors.email?.message && (
-                        <span className="errorMessage">
-                          {errors.email.message}
+                    {!isEmaillExist ? (
+                      <span className="errorMessage">
+                        Email doesn't exist
+                        <span>
+                          <Button
+                            className="registerButton"
+                            color="danger"
+                            onClick={toggle}
+                          >
+                            Register Now
+                          </Button>
+                          <Modal
+                            size="xl"
+                            className="modalContainer"
+                            isOpen={modal}
+                            toggle={toggle}
+                          >
+                            <ModalHeader toggle={toggle}>
+                              Registration
+                            </ModalHeader>
+                            <ModalBody>
+                              <SignUpForm />
+                            </ModalBody>
+                            <ModalFooter>
+                              <Button color="primary" onClick={toggle}>
+                                Done
+                              </Button>{" "}
+                              <Button color="secondary" onClick={toggle}>
+                                Cancel
+                              </Button>
+                            </ModalFooter>
+                          </Modal>
                         </span>
-                      )
-                    : null}
-                  {!isEmaillExist ? (
-                    <span className="errorMessage">
-                      Email doesn't exist
-                      <span>
-                        <Button
-                          className="registerButton"
-                          color="danger"
-                          onClick={toggle}
-                        >
-                          Register Now
-                        </Button>
-                        <Modal
-                          size="xl"
-                          className="modalContainer"
-                          isOpen={modal}
-                          toggle={toggle}
-                        >
-                          <ModalHeader toggle={toggle}>
-                            Registration
-                          </ModalHeader>
-                          <ModalBody>
-                            <SignUpForm />
-                          </ModalBody>
-                          <ModalFooter>
-                            <Button color="primary" onClick={toggle}>
-                              Done
-                            </Button>{" "}
-                            <Button color="secondary" onClick={toggle}>
-                              Cancel
-                            </Button>
-                          </ModalFooter>
-                        </Modal>
                       </span>
-                    </span>
-                  ) : null}
-                </FormGroup>
+                    ) : null}
+                  </FormGroup>
 
-                <FormGroup>
-                  <Label for="examplePassword">Password</Label>
-                  <Input
-                    id="examplePassword"
-                    placeholder="Enter your password"
-                    type="password"
-                    name="password"
-                    onChange={(e: any) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-                  {!isPasswordValid ? (
-                    <span className="errorMessage">Verify your password</span>
-                  ) : null}
-                </FormGroup>
-              </Row>
-              <Button className="signupButton" onClick={getUser}>
-                Login
-              </Button>
-            </Form>
+                  <FormGroup>
+                    <Label for="examplePassword">Password</Label>
+                    <Input
+                      id="examplePassword"
+                      placeholder="Enter your password"
+                      type="password"
+                      name="password"
+                      onChange={(e: any) => {
+                        setPassword(e.target.value);
+                      }}
+                    />
+                    {!isPasswordValid ? (
+                      <span className="errorMessage">Verify your password</span>
+                    ) : null}
+                  </FormGroup>
+                </Row>
+                <Button className="signupButton" onClick={getUser}>
+                  Login
+                </Button>
+              </Form>
+            </div>
+            <div className="imagelogContainer"></div>
           </div>
-          <div className="imagelogContainer"></div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
