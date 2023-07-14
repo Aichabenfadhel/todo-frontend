@@ -26,3 +26,10 @@ export type ListTodoType = {
     updatedTodos: any;
     todos: any;
   };
+
+  export type LoginFormPropsType = {
+    email: string;
+    password: string;
+    setEmail: Function;
+    setPassword: Function;
+  };
