@@ -14,7 +14,7 @@ export default function SignUpForm() {
   const [lastname, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [pwd, setPassword] = React.useState("");
-  const [isEmaillExist, setIsEmailExist] = React.useState(false);
+ 
 
   const showToastMessage = () => {
     toast.success("Registred Successfully ! Go and login Now", {
@@ -55,9 +55,7 @@ export default function SignUpForm() {
           pwd,
         })
         .then((response: any): void => {
-          if (response.data.message === "User already exists!") {
-            setIsEmailExist(true);
-          }
+         
         })
         .catch((error) => {
           console.error(error.message);
