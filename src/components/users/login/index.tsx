@@ -19,13 +19,7 @@ import "../signUp/style.css";
 import SignUpForm from "../signUp";
 import { useNavigate } from "react-router-dom";
 import NavbarComponent from "../../Navbar-cont";
-
-type LoginFormPropsType = {
-  email: string;
-  password: string;
-  setEmail: Function;
-  setPassword: Function;
-};
+import { LoginFormPropsType } from "../../types";
 
 export default function LoginForm({
   email,
@@ -33,11 +27,11 @@ export default function LoginForm({
   password,
   setPassword,
 }: LoginFormPropsType) {
-  const [isEmaillExist, setIsEmailExist] = React.useState(true);
+  const [isEmailExist, setIsEmailExist] = React.useState(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
   const [modal, setModal] = React.useState(false);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const toggle = () => setModal(!modal);
 
   async function getUser() {
@@ -91,7 +85,7 @@ export default function LoginForm({
                       }}
                     />
 
-                    {!isEmaillExist ? (
+                    {!isEmailExist ? (
                       <span className="errorMessage">
                         Email doesn't exist
                         <span>
@@ -129,9 +123,9 @@ export default function LoginForm({
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="examplePassword">Password</Label>
+                    <Label for="password">Password</Label>
                     <Input
-                      id="examplePassword"
+                      id="password"
                       placeholder="Enter your password"
                       type="password"
                       name="password"
