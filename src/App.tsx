@@ -11,15 +11,30 @@ import Home from "./components/home";
 import "./App.css";
 
 export default function App() {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  // const storedUser = JSON.parse(localStorage.getItem('user'));
   return (
+    
     <React.Fragment>
-      <NavbarComponent />
-
       <Routes>
-        <Route path="home" index element={<Home />} />
+        <Route path="" index element={<Home />} />
         <Route path="Sign-up" element={<SignUpForm />} />
-        <Route path="Login" element={<LoginForm />} />
-        <Route path="todo" element={<TodoIndex />} />
+        <Route
+          path="Login"
+          element={
+            <LoginForm
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
+            />
+          }
+        />
+        <Route
+          path="todo"
+          element={<TodoIndex email={email} password={password} />}
+        />
       </Routes>
     </React.Fragment>
   );
