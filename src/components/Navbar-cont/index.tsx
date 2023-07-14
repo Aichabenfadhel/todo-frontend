@@ -15,7 +15,7 @@ export default function NavbarComponent(args: any) {
   return (
     <div className="Nav-cont">
       <Navbar {...args}>
-        <Link to="/home" className="nav-title">
+        <Link to="/" className="nav-title">
           <NavbarBrand className="nav-title">
             {" "}
             <SiTodoist className="nav-icon" />
