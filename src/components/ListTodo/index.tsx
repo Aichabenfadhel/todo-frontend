@@ -8,7 +8,6 @@ import { ListTodoType, TodoType, listTodoPropsType } from "../types";
 import "./Style.css";
 
 export default function ListTodos({ email, password }: listTodoPropsType) {
-  
   const [todos, setTodos] = useState<Record<string, TodoType>>();
   const [todosArray, setTodosArray] = useState<ListTodoType[]>([]);
 
