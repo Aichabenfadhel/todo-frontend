@@ -22,13 +22,17 @@ import NavbarComponent from "../../Navbar-cont";
 
 type LoginFormPropsType = {
   email: string;
-  password:string;
-  setEmail:Function;
+  password: string;
+  setEmail: Function;
   setPassword: Function;
 };
 
-export default function LoginForm({ email, setEmail,password, setPassword }: LoginFormPropsType ) {
-
+export default function LoginForm({
+  email,
+  setEmail,
+  password,
+  setPassword,
+}: LoginFormPropsType) {
   const [isEmaillExist, setIsEmailExist] = React.useState(true);
   const [isPasswordValid, setIsPasswordValid] = React.useState(true);
   const [modal, setModal] = React.useState(false);
@@ -49,7 +53,7 @@ export default function LoginForm({ email, setEmail,password, setPassword }: Log
           }
 
           if (response.data.message === "Getting user successfully") {
-            localStorage.setItem("user", JSON.stringify(response.data.rows));
+            localStorage.setItem("user", JSON.stringify(response.data.data));
 
             navigate("/todo");
           }
