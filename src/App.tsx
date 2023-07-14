@@ -3,7 +3,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import TodoIndex from "./components/Todoindex";
-import NavbarComponent from "./components/Navbar-cont";
 import SignUpForm from "./components/users/signUp";
 import LoginForm from "./components/users/login";
 import Home from "./components/home";
@@ -13,9 +12,7 @@ import "./App.css";
 export default function App() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const storedUser = JSON.parse(localStorage.getItem('user'));
   return (
-    
     <React.Fragment>
       <Routes>
         <Route path="" index element={<Home />} />
