@@ -18,7 +18,7 @@ export default function SignUpForm() {
   const showToastMessage = () => {
     toast.success("Registred Successfully ! Go and login Now", {
       position: toast.POSITION.TOP_CENTER,
-      autoClose:2000,
+      autoClose: 2000,
     });
   };
 
@@ -50,9 +50,7 @@ export default function SignUpForm() {
           email,
           pwd,
         })
-        .then((): void => {
-          
-        })
+        .then((): void => {})
         .catch((error) => {
           console.error(error.message);
         });
@@ -60,6 +58,7 @@ export default function SignUpForm() {
       console.error(error.message);
     }
   }
+
   return (
     <>
       <NavbarComponent />
@@ -177,10 +176,6 @@ export default function SignUpForm() {
                     })}
                     onChange={(e: any) => {
                       setPassword(e.target.value);
-                      console.log(
-                        "🚀 ~ file: index.tsx:179 ~ SignUpForm ~ e.target.value:",
-                        e.target.value
-                      );
                     }}
                   />
                   {errors.password?.message && (
