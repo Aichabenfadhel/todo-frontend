@@ -4,18 +4,13 @@ import axios from "axios";
 
 import { Button, Modal, ModalFooter, ModalHeader } from "reactstrap";
 import { BiEdit } from "react-icons/bi";
+import { EditTodoPropsType } from "../types";
 
 import "../ListTodo/Style.css";
-import { ListTodoType } from "../ListTodo";
-
-type EditTodoPropsType = {
-  todo_id: any;
-  description: any;
-  updatedTodos: any;
-  todos: ListTodoType[];
-};
 
 export default function EditTodo({
+  email,
+  password,
   todo_id,
   description,
   updatedTodos,
@@ -29,11 +24,14 @@ export default function EditTodo({
   const updateDescription = async (description: string) => {
     try {
       axios
-        .put(`${process.env.REACT_APP_API_URL}/updateTodo/${todo_id}`, {
-          description,
-        })
+        .put(
+          `${process.env.REACT_APP_API_URL}/updateTodo/${email}/${password}/${todo_id}`,
+          {
+            description,
+          }
+        )
         .then(() => {
-          const filtredTodos = todos.filter((todo: any) => {
+          const filtredTodos = updatedTodos.filter((todo: any) => {
             if (todo.todo_id !== todo_id) {
               return todo;
             }
