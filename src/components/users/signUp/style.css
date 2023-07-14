@@ -38,6 +38,10 @@
     width: 100%;
 }
 
+.signUpForm{
+    width:100%
+}
+
 .imageContainer{
     width: 50%;
     margin:2% 2% 2% 0%;
@@ -71,8 +75,9 @@
     height: 30px;
     font-size: 10px;
     text-decoration: underline rgb(19, 18, 18);
-    margin-left: 1%;
-    margin-left: 50%;
+    /* margin-left: 1%;
+    margin-left: 50%; */
+    float: right;
 }
 .registerButton:hover{
     cursor: pointer;
