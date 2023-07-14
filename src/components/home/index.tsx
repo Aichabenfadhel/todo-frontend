@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import NavbarComponent from "../Navbar-cont";
 import "./style.css"
 
 export default function Home() {
+  
   return (
+    <>
+    <NavbarComponent />
     <div className="homeContainer">
       <div className="titleContainer">
         <h1> Welcome to Todo List</h1>
@@ -16,5 +20,6 @@ export default function Home() {
         </Link>
       </div>
     </div>
+    </>
   );
 }
