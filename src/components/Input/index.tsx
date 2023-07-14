@@ -3,10 +3,11 @@ import React from "react";
 import axios from "axios";
 
 import { Button } from "reactstrap";
+import { listTodoPropsType } from "../types";
 
 import "./input-todo.css";
 
-export default function InputTodo() {
+export default function InputTodo({ email, password }: listTodoPropsType) {
   const [description, setDescription] = React.useState("");
 
   const handleOnClickButton = async (event: any) => {
@@ -17,7 +18,7 @@ export default function InputTodo() {
   async function addTodo() {
     try {
       axios
-        .post(`${process.env.REACT_APP_API_URL}/addtodo`, {
+        .post(`${process.env.REACT_APP_API_URL}/addtodo/${email}/${password}`, {
           description,
         })
         .then((): void => {})
