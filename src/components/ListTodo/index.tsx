@@ -15,15 +15,16 @@ type listTodoPropsType = {
   todosArray: ListTodoType[];
   markDone: (todo_id: string, completed: boolean) => void;
   deleteTodo: (todo_id: string) => void;
+  updateTodo: (todo_id: string, description: string) => Promise<void>;
 };
 
 export default function ListTodos({
   email,
   password,
-  todos,
   todosArray,
   markDone,
   deleteTodo,
+  updateTodo,
 }: listTodoPropsType) {
   return (
     <div className="list-container">
@@ -54,12 +55,9 @@ export default function ListTodos({
                   {!todo.completed && (
                     <span title="Edit">
                       <EditTodo
-                        email={email}
-                        password={password}
-                        todos={todos}
                         todo_id={todo.todo_id}
                         description={todo.description}
-                        updatedTodos={todosArray}
+                        updateTodo={updateTodo}
                       />
                     </span>
                   )}

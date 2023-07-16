@@ -84,6 +84,32 @@ export default function TodoIndex({ email, password }: todoIndexTypeProps) {
     }
   };
 
+  const updateTodo = async (todo_id: string, description: string) => {
+    try {
+      axios
+        .put(
+          `${process.env.REACT_APP_API_URL}/updateTodo/${email}/${password}/${todo_id}`,
+          {
+            description,
+          }
+        )
+        .then(() => {
+          const newTasks = todosArray.map((todo) => {
+            if (todo.todo_id === todo_id) {
+              return { ...todo, description };
+            }
+            return todo;
+          });
+          setTodosArray(newTasks);
+        })
+        .catch((error: any) => {
+          console.error(error.message);
+        });
+    } catch (err: any) {
+      console.error(err.message);
+    }
+  };
+
   useEffect(() => {
     if (todos !== undefined) {
       const todosUserArray: ListTodoType[] = [];
@@ -115,6 +141,7 @@ export default function TodoIndex({ email, password }: todoIndexTypeProps) {
         todosArray={todosArray}
         markDone={markDone}
         deleteTodo={deleteTodo}
+        updateTodo={updateTodo}
       />
     </React.Fragment>
   );
