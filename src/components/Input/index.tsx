@@ -5,18 +5,11 @@ import { Button } from "reactstrap";
 import "./input-todo.css";
 
 type listTodoPropsType = {
-  email: string;
-  password: string;
   addTodo: (description: string) => void;
   getTodos: () => Promise<void>;
 };
 
-export default function InputTodo({
-  email,
-  password,
-  addTodo,
-  getTodos,
-}: listTodoPropsType) {
+export default function InputTodo({ addTodo, getTodos }: listTodoPropsType) {
   const [description, setDescription] = React.useState("");
 
   const handleAddTodo = async (event: any) => {

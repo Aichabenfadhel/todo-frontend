@@ -9,8 +9,6 @@ import "./Style.css";
 import { ListTodoType, TodoType } from "../types";
 
 type listTodoPropsType = {
-  email: string;
-  password: string;
   todos: Record<string, TodoType>;
   todosArray: ListTodoType[];
   markDone: (todo_id: string, completed: boolean) => void;
@@ -19,8 +17,6 @@ type listTodoPropsType = {
 };
 
 export default function ListTodos({
-  email,
-  password,
   todosArray,
   markDone,
   deleteTodo,

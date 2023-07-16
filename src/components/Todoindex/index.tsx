@@ -128,15 +128,8 @@ export default function TodoIndex({ email, password }: todoIndexTypeProps) {
   return (
     <React.Fragment>
       <UserNavbarComponent />
-      <InputTodo
-        getTodos={getTodos}
-        addTodo={addTodo}
-        email={email}
-        password={password}
-      />
+      <InputTodo getTodos={getTodos} addTodo={addTodo} />
       <ListTodos
-        email={email}
-        password={password}
         todos={todos!}
         todosArray={todosArray}
         markDone={markDone}
