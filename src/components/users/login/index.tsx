@@ -35,6 +35,7 @@ export default function LoginForm({
   const toggle = () => setModal(!modal);
 
   async function getUser() {
+    console.log("login");
     try {
       axios
         .get(`${process.env.REACT_APP_API_URL}/getUser/${email}/${password}`)

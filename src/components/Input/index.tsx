@@ -1,37 +1,30 @@
 import React from "react";
 
-import axios from "axios";
-
 import { Button } from "reactstrap";
-import { listTodoPropsType } from "../types";
 
 import "./input-todo.css";
 
-export default function InputTodo({ email, password }: listTodoPropsType) {
+type listTodoPropsType = {
+  email: string;
+  password: string;
+  addTodo: (description: string) => void;
+  getTodos: () => Promise<void>;
+};
+
+export default function InputTodo({
+  email,
+  password,
+  addTodo,
+  getTodos,
+}: listTodoPropsType) {
   const [description, setDescription] = React.useState("");
 
-  const handleOnClickButton = async (event: any) => {
+  const handleAddTodo = async (event: any) => {
     event.preventDefault();
-    addTodo();
+    addTodo(description);
+    getTodos();
+    setDescription("");
   };
-
-  async function addTodo() {
-    try {
-      axios
-        .post(`${process.env.REACT_APP_API_URL}/addtodo/${email}/${password}`, {
-          description,
-        })
-        .then((): void => {})
-        .catch((error) => {
-          console.error(error.message);
-        });
-
-      setDescription("");
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  }
-  
 
   return (
     <React.Fragment>
@@ -49,7 +42,7 @@ export default function InputTodo({ email, password }: listTodoPropsType) {
           }
         />
 
-        <Button className="button-add" onClick={handleOnClickButton}>
+        <Button className="button-add" onClick={handleAddTodo}>
           Add Task
         </Button>
       </div>
